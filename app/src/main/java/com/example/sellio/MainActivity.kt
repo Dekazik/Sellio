@@ -11,6 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.sellio.ui.navigation.NavGraph
+import com.example.sellio.ui.navigation.Screen
+import com.example.sellio.ui.screens.HomeScreen
 import com.example.sellio.ui.theme.SellioTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +23,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SellioTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navController = rememberNavController()
+                NavGraph(navController)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SellioTheme {
-        Greeting("Android")
     }
 }
